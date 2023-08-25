@@ -16,3 +16,22 @@ describe("Duel Duo tests", () => {
     await driver.wait(until.titleIs("Duel Duo"), 1000);
   });
 });
+
+describe("Draw button test", () => {
+  test("displays div with ID 'choices'", async () => {
+    await driver.get("http://localhost:8000");
+    await driver.findElement(By.id("draw")).click();
+    const choicesDiv = await driver.findElement(By.id("choices"));
+    await driver.wait(until.elementIsVisible(choicesDiv), 1000);
+  });
+});
+
+describe("Add to duo button test", () => {
+  test("displays div with Id playerDuo", async () => {
+    await driver.get("http://localhost:8000");
+    await driver.findElement(By.id("draw")).click();
+    await driver.findElement(By.className('bot-btn')).click();
+    const playerCont = await driver.findElement(By.id("player-duo"));
+    await driver.wait(until.elementIsVisible(playerCont), 1000);
+  });
+});
